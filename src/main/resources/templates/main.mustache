@@ -1,5 +1,27 @@
 <html>
 <body>
-<div>{{some}}</div>
+<div>
+    <form method="post">
+        <input type="text" name="firstName" placeholder="input first name">
+        <input type="text" name="lastName" placeholder="input last name">
+        <input type="text" name="departmentId" placeholder="input departmentId">
+        <input type="text" name="job_title" placeholder="input job_title">
+        <input type="text" name="gender" placeholder="input gender">
+        <input type="text" name="date_of_birth" placeholder="input date_of_birth">
+        <button type="submit">add</button>
+    </form>
+</div>
+
+<div> List of employee</div>
+{{#employees}}
+    <div><b>{{employeeId}}</b>
+        <span>{{firstName}}</span>
+        <i>{{lastName}}</i>
+        <i>{{departmentId}}</i>
+        <i>{{job_title}}</i>
+        <i>{{gender}}</i>
+        <i>{{date_of_birth}}</i>
+    </div>
+{{/employees}}
 </body>
 </html>
