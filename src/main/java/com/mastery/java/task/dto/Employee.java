@@ -2,6 +2,7 @@ package com.mastery.java.task.dto;
 
 import java.util.Date;
 
+
 public class Employee {
     private Long employeeId;
     private String firstName;
