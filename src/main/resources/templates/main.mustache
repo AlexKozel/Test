@@ -1,5 +1,47 @@
 <html>
 <body>
-<div>{{some}}</div>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Sign Out">
+    </form>
+</div>
+<div>
+    <form method="post">
+        <input type="text" name="firstName" placeholder="input first name">
+        <input type="text" name="lastName" placeholder="input last name">
+        <input type="text" name="departmentId" placeholder="input departmentId">
+        <input type="text" name="job_title" placeholder="input job_title">
+        <input type="text" name="gender" placeholder="input gender">
+        <input type="text" name="date_of_birth" placeholder="input date_of_birth">
+        <button type="submit">add</button>
+    </form>
+</div>
+<div> Employees
+</div>
+<form method="post" action="filter">
+    <input type="text" name="filter">
+    <button type="submit">find</button>
+</form>
+
+<div> List of employee</div>
+{{#employees}}
+    <div><b>{{employeeId}}</b>
+        <span>{{firstName}}</span>
+        <i>{{lastName}}</i>
+        <i>{{departmentId}}</i>
+        <i>{{job_title}}</i>
+        <i>{{gender}}</i>
+        <i>{{date_of_birth}}</i>
+    </div>
+{{/employees}}
+
+<div> Delete
+</div>
+<form method="post" action="delete" >
+    <input type="number" name="id">
+    <button type="submit">delete</button>
+</form>
 </body>
+
 </html>
