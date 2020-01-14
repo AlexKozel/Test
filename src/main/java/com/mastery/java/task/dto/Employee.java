@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import lombok.*;
 
@@ -17,9 +18,11 @@ public class Employee {
     private Long employeeId;
 
     @NonNull
+    @NotNull
     private String firstName;
 
     @NonNull
+    @NotNull
     private String lastName;
 
     @NonNull
