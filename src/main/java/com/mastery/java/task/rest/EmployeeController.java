@@ -1,21 +1,22 @@
 package com.mastery.java.task.rest;
 
 import com.mastery.java.task.dto.Employee;
+import com.mastery.java.task.dto.User;
 import com.mastery.java.task.dto.repositotories.EmployeeRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
-@RequiredArgsConstructor
-@Controller()
+
+@Controller
 public class EmployeeController
 {
     @Autowired
-    private final EmployeeRepository repository;
+    private EmployeeRepository repository;
 
     @GetMapping( "/" )
     public String greeting( String name, Map<String, Object> model )
@@ -33,6 +34,7 @@ public class EmployeeController
 
     @PostMapping("/main")
     public String add(
+            @AuthenticationPrincipal User user,
         @RequestParam String firstName,
         @RequestParam String lastName,
         @RequestParam String departmentId,
@@ -40,7 +42,7 @@ public class EmployeeController
         @RequestParam String gender,
         @RequestParam String date_of_birth, Map<String, Object> model )
     {
-        Employee employee = new Employee( firstName, lastName, departmentId, job_title, gender, date_of_birth );
+        Employee employee = new Employee( firstName, lastName, departmentId, job_title, gender, date_of_birth, user );
         repository.save( employee );
 
         Iterable<Employee> employees = repository.findAll();

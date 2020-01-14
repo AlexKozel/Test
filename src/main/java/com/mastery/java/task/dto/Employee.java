@@ -1,12 +1,11 @@
 package com.mastery.java.task.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-import lombok.*;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -18,11 +17,9 @@ public class Employee {
     private Long employeeId;
 
     @NonNull
-    @NotNull
     private String firstName;
 
     @NonNull
-    @NotNull
     private String lastName;
 
     @NonNull
@@ -36,4 +33,13 @@ public class Employee {
 
     @NonNull
     private String date_of_birth;
+
+    @NonNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
+
+    public String getAuthorName(){
+        return author != null ? author.getUsername() : "No user";
+    }
 }
